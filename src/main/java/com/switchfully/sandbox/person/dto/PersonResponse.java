@@ -1,6 +1,6 @@
-package com.switchfully.orm.sandbox.person.dto;
+package com.switchfully.sandbox.person.dto;
 
-import com.switchfully.orm.sandbox.person.domain.Person;
+import com.switchfully.sandbox.person.domain.Person;
 
 public class PersonResponse {
 

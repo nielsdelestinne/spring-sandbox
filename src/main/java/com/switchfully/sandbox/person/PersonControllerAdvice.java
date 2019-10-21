@@ -1,7 +1,7 @@
-package com.switchfully.orm.sandbox.person;
+package com.switchfully.sandbox.person;
 
-import com.switchfully.orm.sandbox.ErrorResponse;
-import com.switchfully.orm.sandbox.person.exceptions.PersonNotFoundException;
+import com.switchfully.sandbox.ErrorResponse;
+import com.switchfully.sandbox.person.exceptions.PersonNotFoundException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.annotation.Order;

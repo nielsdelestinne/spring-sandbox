@@ -1,4 +1,4 @@
-package com.switchfully.orm.sandbox.person.dto;
+package com.switchfully.sandbox.person.dto;
 
 public class UpdatePersonRequest {
 

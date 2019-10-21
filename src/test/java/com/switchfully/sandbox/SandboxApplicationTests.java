@@ -1,4 +1,4 @@
-package com.switchfully.orm.sandbox;
+package com.switchfully.sandbox;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;

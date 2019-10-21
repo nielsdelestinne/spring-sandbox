@@ -1,4 +1,4 @@
-package com.switchfully.orm.sandbox.person.exceptions;
+package com.switchfully.sandbox.person.exceptions;
 
 public class PersonNotFoundException extends RuntimeException {
 

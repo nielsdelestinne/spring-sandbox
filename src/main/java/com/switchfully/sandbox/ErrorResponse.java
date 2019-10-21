@@ -1,4 +1,4 @@
-package com.switchfully.orm.sandbox;
+package com.switchfully.sandbox;
 
 public class ErrorResponse {
 

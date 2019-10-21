@@ -1,13 +1,12 @@
-package com.switchfully.orm.sandbox.person;
+package com.switchfully.sandbox.person;
 
-import com.switchfully.orm.sandbox.person.domain.Person;
-import com.switchfully.orm.sandbox.person.dto.CreatePersonRequest;
-import com.switchfully.orm.sandbox.person.dto.PersonResponse;
-import com.switchfully.orm.sandbox.person.dto.UpdatePersonRequest;
+import com.switchfully.sandbox.person.domain.Person;
+import com.switchfully.sandbox.person.dto.CreatePersonRequest;
+import com.switchfully.sandbox.person.dto.PersonResponse;
+import com.switchfully.sandbox.person.dto.UpdatePersonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import static com.switchfully.orm.sandbox.person.dto.PersonResponse.mapToResponse;
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
 @RestController
@@ -25,20 +24,20 @@ public class PersonController {
 
     @GetMapping(path = "{id}", produces = APPLICATION_JSON_VALUE)
     public PersonResponse getPerson(@PathVariable String id) {
-        return mapToResponse(
+        return PersonResponse.mapToResponse(
                 personService.getById(id));
     }
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public PersonResponse createPerson(@RequestBody CreatePersonRequest createPersonRequest) {
-        return mapToResponse(
+        return PersonResponse.mapToResponse(
                 personService.save(
                         new Person(createPersonRequest.getName())));
     }
 
     @PutMapping(path = "{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
     public PersonResponse updatePerson(@PathVariable String id, @RequestBody UpdatePersonRequest updatePersonRequest) {
-        return mapToResponse(
+        return PersonResponse.mapToResponse(
                 personService.update(id, updatePersonRequest.getName()));
     }
 

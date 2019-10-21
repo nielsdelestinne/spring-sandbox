@@ -1,8 +1,8 @@
-package com.switchfully.orm.sandbox.person;
+package com.switchfully.sandbox.person;
 
-import com.switchfully.orm.sandbox.person.domain.Person;
-import com.switchfully.orm.sandbox.person.domain.PersonRepository;
-import com.switchfully.orm.sandbox.person.exceptions.PersonNotFoundException;
+import com.switchfully.sandbox.person.domain.Person;
+import com.switchfully.sandbox.person.domain.PersonRepository;
+import com.switchfully.sandbox.person.exceptions.PersonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;

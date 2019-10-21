@@ -1,4 +1,4 @@
-package com.switchfully.orm.sandbox.person.domain;
+package com.switchfully.sandbox.person.domain;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
