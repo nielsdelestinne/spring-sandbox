@@ -2,12 +2,13 @@ package com.switchfully.orm.sandbox.person;
 
 import com.switchfully.orm.sandbox.person.domain.Person;
 import com.switchfully.orm.sandbox.person.domain.PersonRepository;
+import com.switchfully.orm.sandbox.person.exceptions.PersonNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Optional;
 
 @Service
 @Transactional
@@ -25,9 +26,19 @@ public class PersonService {
         return personRepository.save(personToSave);
     }
 
-    @Transactional(propagation = Propagation.SUPPORTS)
-    public Optional<Person> getById(String id) {
-        return personRepository.findById(id);
+    @Transactional(propagation = Propagation.REQUIRES_NEW)
+    @CachePut(value = "persons", key = "#id")
+    public Person update(String id, String name) {
+        var person = personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException("No person found for ID " + id));
+        person.updateName(name);
+        return personRepository.save(person);
     }
 
+    @Transactional(propagation = Propagation.SUPPORTS)
+    @Cacheable(value = "persons", key = "#id")
+    public Person getById(String id) {
+        return personRepository.findById(id)
+                .orElseThrow(() -> new PersonNotFoundException("No person found for ID " + id));
+    }
 }

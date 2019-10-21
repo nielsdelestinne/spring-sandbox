@@ -9,7 +9,7 @@ public class Person {
 
     @Id
     private final String id;
-    private final String name;
+    private String name;
 
     private Person() {
         this.id = null;
@@ -27,5 +27,9 @@ public class Person {
 
     public String getName() {
         return name;
+    }
+
+    public void updateName(String name) {
+        this.name = name;
     }
 }

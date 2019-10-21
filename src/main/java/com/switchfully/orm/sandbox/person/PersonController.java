@@ -3,7 +3,7 @@ package com.switchfully.orm.sandbox.person;
 import com.switchfully.orm.sandbox.person.domain.Person;
 import com.switchfully.orm.sandbox.person.dto.CreatePersonRequest;
 import com.switchfully.orm.sandbox.person.dto.PersonResponse;
-import com.switchfully.orm.sandbox.person.exceptions.PersonNotFoundException;
+import com.switchfully.orm.sandbox.person.dto.UpdatePersonRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -26,8 +26,7 @@ public class PersonController {
     @GetMapping(path = "{id}", produces = APPLICATION_JSON_VALUE)
     public PersonResponse getPerson(@PathVariable String id) {
         return mapToResponse(
-                personService.getById(id)
-                        .orElseThrow(() -> new PersonNotFoundException("No person found for ID " + id)));
+                personService.getById(id));
     }
 
     @PostMapping(produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
@@ -35,6 +34,12 @@ public class PersonController {
         return mapToResponse(
                 personService.save(
                         new Person(createPersonRequest.getName())));
+    }
+
+    @PutMapping(path = "{id}", produces = APPLICATION_JSON_VALUE, consumes = APPLICATION_JSON_VALUE)
+    public PersonResponse updatePerson(@PathVariable String id, @RequestBody UpdatePersonRequest updatePersonRequest) {
+        return mapToResponse(
+                personService.update(id, updatePersonRequest.getName()));
     }
 
 }
